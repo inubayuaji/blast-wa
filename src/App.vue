@@ -24,9 +24,7 @@
 
         <v-stepper-items>
           <v-stepper-content step="1">
-            <v-btn color="primary" @click="step = 2"> Continue </v-btn>
-
-            <v-btn text> Cancel </v-btn>
+            <Persetujuan></Persetujuan>
           </v-stepper-content>
 
           <v-stepper-content step="2">
@@ -56,13 +54,17 @@
 </template>
 
 <script>
+import Persetujuan from './components/Persetujuan.vue';
+
 export default {
   name: "App",
-  data() {
-    return {
-      step: 1,
-    };
+  computed: {
+    step(){
+      return this.$store.state.step;
+    }
   },
-  components: {},
+  components: {
+    Persetujuan
+  },
 };
 </script>
