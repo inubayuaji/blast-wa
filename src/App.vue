@@ -1,60 +1,68 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
     <v-main>
-      <HelloWorld/>
+      <v-stepper v-model="step" height="100%">
+        <v-stepper-header>
+          <v-stepper-step :complete="step > 1" step="1">
+            Persetujuan
+          </v-stepper-step>
+
+          <v-divider></v-divider>
+
+          <v-stepper-step :complete="step > 2" step="2">
+            Kontak
+          </v-stepper-step>
+
+          <v-divider></v-divider>
+
+          <v-stepper-step :complete="step > 3" step="3"> Pesan </v-stepper-step>
+
+          <v-divider></v-divider>
+
+          <v-stepper-step step="4"> Selesai </v-stepper-step>
+        </v-stepper-header>
+
+        <v-stepper-items>
+          <v-stepper-content step="1">
+            <v-btn color="primary" @click="step = 2"> Continue </v-btn>
+
+            <v-btn text> Cancel </v-btn>
+          </v-stepper-content>
+
+          <v-stepper-content step="2">
+            <v-btn color="primary" @click="step = 3"> Continue </v-btn>
+
+            <v-btn text> Cancel </v-btn>
+          </v-stepper-content>
+
+          <v-stepper-content step="3">
+            <v-btn color="primary" @click="step = 4"> Continue </v-btn>
+
+            <v-btn text> Cancel </v-btn>
+          </v-stepper-content>
+
+          <v-stepper-content step="4">
+            <v-btn color="primary" @click="step = 1"> Continue </v-btn>
+
+            <v-btn text> Cancel </v-btn>
+          </v-stepper-content>
+        </v-stepper-items>
+      </v-stepper>
     </v-main>
+    <v-footer>
+      Made by <v-btn text>Lunantu</v-btn>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
 export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
+  name: "App",
+  data() {
+    return {
+      step: 1,
+    };
   },
-
-  data: () => ({
-    //
-  }),
+  components: {},
 };
 </script>
