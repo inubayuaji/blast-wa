@@ -41,30 +41,28 @@
         </v-stepper-items>
       </v-stepper>
     </v-main>
-    <v-footer>
-      Made by <v-btn text color="primary">Lunantu</v-btn>
-    </v-footer>
+    <v-footer> Made by <v-btn text color="primary">Lunantu</v-btn> </v-footer>
   </v-app>
 </template>
 
 <script>
-import Persetujuan from './components/Persetujuan.vue';
-import Kontak from './components/Kontak.vue';
-import Pesan from './components/Pesan.vue';
-import Selesai from './components/Selesai.vue';
+import Persetujuan from "./components/Persetujuan.vue";
+import Kontak from "./components/Kontak.vue";
+import Pesan from "./components/Pesan.vue";
+import Selesai from "./components/Selesai.vue";
 
 export default {
   name: "App",
   computed: {
-    step(){
+    step() {
       return this.$store.state.step;
-    }
+    },
   },
   components: {
     Persetujuan,
     Kontak,
     Pesan,
-    Selesai
+    Selesai,
   },
 };
 </script>
