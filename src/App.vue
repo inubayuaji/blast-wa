@@ -28,33 +28,30 @@
           </v-stepper-content>
 
           <v-stepper-content step="2">
-            <v-btn color="primary" @click="step = 3"> Continue </v-btn>
-
-            <v-btn text> Cancel </v-btn>
+            <Kontak></Kontak>
           </v-stepper-content>
 
           <v-stepper-content step="3">
-            <v-btn color="primary" @click="step = 4"> Continue </v-btn>
-
-            <v-btn text> Cancel </v-btn>
+            <Pesan></Pesan>
           </v-stepper-content>
 
           <v-stepper-content step="4">
-            <v-btn color="primary" @click="step = 1"> Continue </v-btn>
-
-            <v-btn text> Cancel </v-btn>
+            <Selesai></Selesai>
           </v-stepper-content>
         </v-stepper-items>
       </v-stepper>
     </v-main>
     <v-footer>
-      Made by <v-btn text>Lunantu</v-btn>
+      Made by <v-btn text color="primary">Lunantu</v-btn>
     </v-footer>
   </v-app>
 </template>
 
 <script>
 import Persetujuan from './components/Persetujuan.vue';
+import Kontak from './components/Kontak.vue';
+import Pesan from './components/Pesan.vue';
+import Selesai from './components/Selesai.vue';
 
 export default {
   name: "App",
@@ -64,7 +61,10 @@ export default {
     }
   },
   components: {
-    Persetujuan
+    Persetujuan,
+    Kontak,
+    Pesan,
+    Selesai
   },
 };
 </script>

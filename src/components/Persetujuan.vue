@@ -1,6 +1,6 @@
 <template>
-  <div class="h-full">
-    <v-sheet class="agreement">
+  <div class="pa-4">
+    <v-sheet class="agreement mb-3">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure animi
       perferendis quaerat cumque autem voluptates neque expedita, dolores,
       maiores tempora quia sequi iusto minus necessitatibus voluptate, velit
@@ -79,12 +79,8 @@ export default {
 </script>
 
 <style scoped>
-.h-full {
-  height: 100%;
-}
 .agreement {
   height: 350px;
   overflow-y: scroll;
-  margin-bottom: 20px;
 }
 </style>
