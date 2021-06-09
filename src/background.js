@@ -84,7 +84,7 @@ if (isDevelopment) {
 }
 
 // wa bot
-ipcMain.on("wa", async (event) => {
+ipcMain.on("wa", async (event, phoneList, pesan) => {
   try {
     var client = new Client();
 
@@ -97,13 +97,10 @@ ipcMain.on("wa", async (event) => {
     });
 
     client.on("ready", () => {
-      // tidak boleh ada + dan angaka 0 didepat diganti 62 terus kasi @c.us diakhir
-      // for (var i = 0; i <= 1; i++) {
-      //   client.sendMessage("6289649218770@c.us", "permisi mau coba bot");
-      //   client.sendMessage("628980222087@c.us", "permisi mau coba bot");
-      // }
-
       // proses krim pesan
+      phoneList.forEach(phone => {
+        client.sendMessage(phone + "@c.us", pesan);
+      });
 
       // selesai
       event.reply("done");

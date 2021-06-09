@@ -1,11 +1,6 @@
 <template>
   <div class="pa-4">
-    <v-textarea
-      outlined
-      name="input-7-4"
-      label="Outlined textarea"
-      value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
-    ></v-textarea>
+    <v-textarea v-model="pesan" outlined label="Pesan"></v-textarea>
 
     <v-btn color="primary" @click="kirim"> Kirim </v-btn>
 
@@ -18,8 +13,10 @@
       </v-card>
       <v-card v-if="displayQrScan">
         <v-card-text>
-          <p style="text-align: center; margin-bottom: 0; padding-top: 10px;">Scan kode dibawah</p>
-          <VueQrcode :value="qr" width=350 class="mx-auto"></VueQrcode>
+          <p style="text-align: center; margin-bottom: 0; padding-top: 10px">
+            Scan kode dibawah
+          </p>
+          <VueQrcode :value="qr" width="350" class="mx-auto"></VueQrcode>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -36,25 +33,33 @@ export default {
   components: {
     VueQrcode,
   },
+  data() {
+    return {
+      pesan: "",
+    };
+  },
   computed: {
     qr() {
       return this.$store.state.qr;
     },
-    displayLoading(){
+    displayLoading() {
       return this.$store.state.displayLoading;
     },
     displayQrScan() {
       return this.$store.state.displayQrScan;
     },
-    dialog(){
+    dialog() {
       return this.$store.state.dialog;
-    }
+    },
+    phoneList() {
+      return this.$store.state.phoneList;
+    },
   },
   methods: {
     async kirim() {
-      ipcRenderer.send("wa");
-      this.$store.commit('toggleDialog');
-      this.$store.commit('showLoading');
+      ipcRenderer.send("wa", this.phoneList, this.pesan);
+      this.$store.commit("toggleDialog");
+      this.$store.commit("showLoading");
     },
   },
 };
