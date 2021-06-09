@@ -3,7 +3,7 @@
     <div class="pesan">
       <h2 class="font-weight-regular">Pesan berhasil terkirim</h2>
 
-      <v-btn color="primary" class="mt-4">Kirim Ulang</v-btn>
+      <v-btn color="primary" class="mt-4" @click="$store.state.step = 1">Kirim Ulang</v-btn>
     </div>
   </div>
 </template>
