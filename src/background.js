@@ -5,6 +5,7 @@ import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS_DEVTOOLS } from "electron-devtools-installer";
 import { ipcMain } from "electron";
 import { Client } from "whatsapp-web.js";
+import chromePaths from "chrome-paths";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
@@ -86,7 +87,12 @@ if (isDevelopment) {
 // wa bot
 ipcMain.on("wa", async (event, phoneList, pesan) => {
   try {
-    var client = new Client();
+    var client = new Client({
+      puppeteer: {
+        executablePath: chromePaths.chrome,
+        // "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+      },
+    });
 
     client.on("qr", (qr) => {
       event.reply("qrcode", qr);
@@ -98,13 +104,12 @@ ipcMain.on("wa", async (event, phoneList, pesan) => {
 
     client.on("ready", () => {
       // proses krim pesan
-      phoneList.forEach(phone => {
+      phoneList.forEach((phone) => {
         client.sendMessage(phone + "@c.us", pesan);
       });
 
       // selesai
       event.reply("done");
-      client.destroy();
     });
 
     client.initialize();

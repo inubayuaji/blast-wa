@@ -61,7 +61,7 @@ export default {
         if (cell == "") {
           excelData.push(null);
         } else {
-          excelData.push(cell.value);
+          excelData.push(cell.value.toString());
         }
       });
 
