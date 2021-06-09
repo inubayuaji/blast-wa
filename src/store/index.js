@@ -10,6 +10,7 @@ export default new Vuex.Store({
     dialog: false,
     displayLoading: false,
     displayQrScan: false,
+    phoneList: [],
   },
   mutations: {
     setQr(state, payload) {
@@ -25,6 +26,9 @@ export default new Vuex.Store({
     },
     toggleDialog(state) {
       state.dialog = !state.dialog;
+    },
+    setPhoneList(state, payload) {
+      state.phoneList = payload.phoneList;
     },
   },
   actions: {},

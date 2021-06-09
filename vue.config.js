@@ -8,7 +8,7 @@ module.exports = {
           return args;
         });
       },
-      externals: ["whatsapp-web.js"],
+      externals: ["whatsapp-web.js", "exceljs"],
       nodeIntegration: true,
     },
   },
