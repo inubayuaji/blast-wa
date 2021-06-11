@@ -1,68 +1,62 @@
 <template>
   <v-app>
     <v-main>
-      <v-stepper v-model="step" height="100%">
-        <v-stepper-header>
-          <v-stepper-step :complete="step > 1" step="1">
-            Persetujuan
-          </v-stepper-step>
-
-          <v-divider></v-divider>
-
-          <v-stepper-step :complete="step > 2" step="2">
-            Kontak
-          </v-stepper-step>
-
-          <v-divider></v-divider>
-
-          <v-stepper-step :complete="step > 3" step="3"> Pesan </v-stepper-step>
-
-          <v-divider></v-divider>
-
-          <v-stepper-step step="4"> Selesai </v-stepper-step>
-        </v-stepper-header>
-
-        <v-stepper-items>
-          <v-stepper-content step="1">
-            <Persetujuan></Persetujuan>
-          </v-stepper-content>
-
-          <v-stepper-content step="2">
-            <Kontak></Kontak>
-          </v-stepper-content>
-
-          <v-stepper-content step="3">
-            <Pesan></Pesan>
-          </v-stepper-content>
-
-          <v-stepper-content step="4">
-            <Selesai></Selesai>
-          </v-stepper-content>
-        </v-stepper-items>
-      </v-stepper>
+      <v-form ref="form" class="pa-5">
+        <v-textarea
+          v-model="form.pesan"
+          :rules="rule.pesan"
+          outlined
+          label="Pesan"
+        ></v-textarea>
+        <v-file-input
+          v-model="form.kontak"
+          :rules="rule.kontak"
+          outlined
+          prepend-icon=""
+          prepend-inner-icon="mdi-microsoft-excel"
+          label="Daftar no"
+          accept=".xlsx"
+        ></v-file-input>
+        <v-btn color="success" @click="kirim">Kirim</v-btn>
+      </v-form>
     </v-main>
-    <v-footer> Made by <v-btn text color="primary">Lunantu</v-btn> </v-footer>
+    <v-footer> Made by <v-btn text color="success">Lunantu</v-btn> </v-footer>
   </v-app>
 </template>
 
 <script>
-import Persetujuan from "./components/Persetujuan.vue";
-import Kontak from "./components/Kontak.vue";
-import Pesan from "./components/Pesan.vue";
-import Selesai from "./components/Selesai.vue";
-
 export default {
   name: "App",
-  computed: {
-    step() {
-      return this.$store.state.step;
-    },
+  data() {
+    return {
+      form: {
+        pesan: null,
+        kontak: null,
+      },
+      rule: {
+        pesan: [(v) => !!v || "Tolong isi pesan."],
+        kontak: [
+          (v) => !!v || "Tolong pilih file kontak.",
+          (v) => {
+            if (v != null) {
+              return (
+                v.path.endsWith(".xlsx") ||
+                "Tolong pilih file dengan extensi .xlsx."
+              );
+            }
+
+            return "Tolong pilih file dengan extensi .xlsx.";
+          },
+        ],
+      },
+    };
   },
-  components: {
-    Persetujuan,
-    Kontak,
-    Pesan,
-    Selesai,
+  methods: {
+    kirim() {
+      if (!this.$refs.form.validate()) {
+        return false;
+      }
+    },
   },
 };
 </script>
