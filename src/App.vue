@@ -1,29 +1,32 @@
 <template>
   <v-app>
     <v-main>
-      <v-form ref="form" class="pa-5">
-        <v-textarea
-          v-model="form.pesan"
-          :rules="rule.pesan"
-          outlined
-          label="Pesan"
-          prepend-inner-icon="mdi-comment"
-          color="success"
-        ></v-textarea>
-        <v-file-input
-          v-model="form.kontak"
-          :rules="rule.kontak"
-          outlined
-          prepend-icon=""
-          prepend-inner-icon="mdi-microsoft-excel"
-          label="Daftar no"
-          accept=".xlsx"
-          color="success"
-        ></v-file-input>
-        <v-btn color="success" @click="kirim"
-          ><v-icon left> mdi-email-send-outline </v-icon> Kirim</v-btn
-        >
-      </v-form>
+      <v-container fluid>
+        <h2 class="mb-5 grey--text">Kirim Pesan</h2>
+        <v-form ref="form">
+          <v-textarea
+            v-model="form.pesan"
+            :rules="rule.pesan"
+            outlined
+            label="Pesan"
+            prepend-inner-icon="mdi-comment"
+            color="success"
+          ></v-textarea>
+          <v-file-input
+            v-model="form.kontak"
+            :rules="rule.kontak"
+            outlined
+            prepend-icon=""
+            prepend-inner-icon="mdi-microsoft-excel"
+            label="Daftar no"
+            accept=".xlsx"
+            color="success"
+          ></v-file-input>
+          <v-btn color="success" @click="kirim"
+            ><v-icon left> mdi-email-send-outline </v-icon> Kirim</v-btn
+          >
+        </v-form>
+      </v-container>
 
       <v-dialog v-model="dialog" persistent max-width="390">
         <v-card v-if="displayLoading">
@@ -97,7 +100,7 @@ export default {
     },
   },
   components: {
-    VueQrcode
+    VueQrcode,
   },
   methods: {
     async kirim() {
