@@ -104,12 +104,26 @@ ipcMain.on("wa", async (event, phoneList, pesan) => {
 
     client.on("ready", () => {
       // proses krim pesan
-      phoneList.forEach((phone) => {
-        client.sendMessage(phone + "@c.us", pesan);
-      });
+      // phoneList.forEach((phone) => {
+      //   client.sendMessage(phone + "@c.us", pesan);
+      // });
 
-      // selesai
-      event.reply("done");
+      var i = 0;
+      function kirm() {
+        setTimeout(function() {
+          // your code handling here
+          client.sendMessage(phoneList[i] + "@c.us", pesan);
+          i++;
+          if (i < phoneList.length) {
+            kirm();
+          }
+          else {
+            // selesai
+            event.reply("done");
+          }
+        }, 300);
+      }
+      kirm();
     });
 
     client.initialize();
