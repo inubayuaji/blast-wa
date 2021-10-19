@@ -1,24 +1,36 @@
-# blast-wa
+# Blast Wa
+One of my failed products, but it can work. This application is useful for sending many wa messages with cellphone numbers in excel. Build with Electron Js, Vue and Vuetify.
 
 ## Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+## Compiles and hot-reloads for development
 ```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
+npm run electron:serve
 ```
 
-### Lints and fixes files
+## Compiles and minifies for production
 ```
-npm run lint
+npm run electron:build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## How to use
+- Open build / serve app
+- Agre on term and service
+- Scand QRCode with WhatsApp Web
+- Input excel file contains whatsapp number
+- Input message text
+- Click send
+
+## Declaimer
+Use this product wisely. I am not responsible for the impact of using this project.
+
+## License
+MIT
+
+## Author
+Name: Inu Bayu Aji<br/>
+Instagram: [instagram.com/_inubayuaji](https://instagram.com/_inubayuaji)
+Site: [medium.com/@inubayuaji](https://medium.com/@inubayuaji)
